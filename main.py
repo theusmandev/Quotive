@@ -1,0 +1,93 @@
+from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime
+import textwrap
+import os
+import random
+
+# === CONFIG ===
+OUTPUT_FOLDER = r"E:\Quotive\Daily Quotes"
+FONT_PATH = r"E:\Quotive\Fonts\Roboto_Condensed-Black.ttf"
+IMAGE_SIZE = (1080, 720)
+FONT_SIZE = 42
+
+# === BACKGROUND COLORS ===
+COLORS = [
+    (30, 30, 30),
+    (40, 60, 120),
+    (60, 100, 60),
+    (100, 50, 80),
+    (200, 100, 40),
+    (20, 100, 150),
+    (45, 80, 150),
+    (60, 179, 113),
+    (123, 104, 238),
+    (205, 92, 92),
+    (72, 61, 139),
+    (100, 149, 237),
+]
+
+
+quote = input("Enter your quote of the day: ").strip()
+author = input("Author (optional): ").strip()
+
+if not quote:
+    print("❌ Please enter a quote.")
+    exit()
+
+bg_color = random.choice(COLORS)
+img = Image.new("RGB", IMAGE_SIZE, color=bg_color)
+draw = ImageDraw.Draw(img)
+
+
+try:
+    font = ImageFont.truetype(FONT_PATH, FONT_SIZE)
+    small_font = ImageFont.truetype(FONT_PATH, 30)
+except:
+    print("⚠️ Font not found or invalid, using default font.")
+    font = ImageFont.load_default()
+    small_font = ImageFont.load_default()
+
+# === STEP 4: Wrap text and measure ===
+wrapped_text = textwrap.fill(quote, width=40)
+bbox = draw.multiline_textbbox((0, 0), wrapped_text, font=font)
+text_w = bbox[2] - bbox[0]
+text_h = bbox[3] - bbox[1]
+
+
+x = (IMAGE_SIZE[0] - text_w) / 2
+y = (IMAGE_SIZE[1] - text_h) / 2
+
+
+draw.multiline_text((x, y), wrapped_text, fill=(255, 255, 255), font=font, align="center")
+
+
+if author:
+    author_text = f"– {author}"
+    author_bbox = draw.textbbox((0, 0), author_text, font=small_font)
+    author_w = author_bbox[2] - author_bbox[0]
+    author_x = (IMAGE_SIZE[0] - author_w) / 2
+    author_y = y + text_h + 20  # 👈 20 pixels gap below quote
+    draw.text((author_x, author_y), author_text, fill=(220, 220, 220), font=small_font)
+
+
+today = datetime.now().strftime("%d %b %Y")
+draw.text((30, 30), today, fill=(200, 200, 200), font=small_font)
+
+
+github_link = "https://github.com/theusmandev"
+link_bbox = draw.textbbox((0, 0), github_link, font=small_font)
+link_w = link_bbox[2] - link_bbox[0]
+link_x = (IMAGE_SIZE[0] - link_w) / 2
+link_y = IMAGE_SIZE[1] - 60
+draw.text((link_x, link_y), github_link, fill=(200, 200, 200), font=small_font)
+
+
+os.makedirs(OUTPUT_FOLDER, exist_ok=True)
+filename = f"{datetime.now().strftime('%Y-%m-%d')}.png"
+filepath = os.path.join(OUTPUT_FOLDER, filename)
+img.save(filepath)
+
+print(f"\n✅ Quote saved successfully as: {filepath}")
+print("Now you can commit and push manually to GitHub.")
+
+
