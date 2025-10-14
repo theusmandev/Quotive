@@ -5,8 +5,8 @@ import os
 import random
 
 # === CONFIG ===
-OUTPUT_FOLDER = r"E:\Quotive\Daily Quotes" # ✅ Tumhara folder
-FONT_PATH = r"E:\Quotive\Fonts\Roboto_Condensed-Black.ttf"  # ✅ Tumhara font
+OUTPUT_FOLDER = r"E:\git-workstation\Quotive\Daily Quotes"# ✅ Tumhara folder
+FONT_PATH = r"E:\git-workstation\Quotive\Fonts\Roboto_Condensed-Black.ttf" # ✅ Tumhara font
 IMAGE_SIZE = (1080, 720)
 
 # === BACKGROUND COLORS ===
