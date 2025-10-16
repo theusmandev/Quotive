@@ -63,7 +63,7 @@ except:
     font = ImageFont.load_default()
     small_font = ImageFont.load_default()
 
-# === STEP 5: Wrap text ===
+# === STEP 5: Wrap text 
 wrapped_text = textwrap.fill(quote, width=WRAP_WIDTH)
 bbox = draw.multiline_textbbox((0, 0), wrapped_text, font=font)
 text_w = bbox[2] - bbox[0]
