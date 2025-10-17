@@ -72,7 +72,7 @@ Quotive/
 
 ##  Example Output
 
-![Daily Quote Example](Daily%20Quotes/2025-10-13.png)
+![Daily Quote Example](Daily%20Quotes/latest.png)
 
 ##  My Philosophy
 
