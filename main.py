@@ -7,7 +7,7 @@ import random
 
 # === CONFIG ===
 OUTPUT_FOLDER = r"E:\git-workstation\Quotive\Daily Quotes" # Your folder path
-FONT_PATH = r"E:\git-workstation\Quotive\Fonts\Roboto_Condensed-Black.ttf" # Your font
+FONT_PATH = r"E:\git-workstation\Quotive\Fonts\Agbalumo-Regular.ttf"# Your font
 IMAGE_SIZE = (1080, 720)
 
 # === BACKGROUND COLORS ===
