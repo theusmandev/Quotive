@@ -147,7 +147,7 @@ print("\nDone! Quote bilkul perfect bani hai!")
 print(f"   → latest.png (updated)")
 print(f"   → {today_date}.png (today's file)")
 print(f"\nFolder: {OUTPUT_FOLDER}")
-print("\nDo commit&push - Have a Good Day!")
+print("\nDo commit & push — Have a great day! 🚀")
 
 
 
